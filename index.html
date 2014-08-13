@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/loader.css" />
+    <script src="js/lib/babylon.1.13-beta-debug.js"></script>
+    <script src="js/lib/howler.min.js"></script>
+    <script src="js/lib/Oimo.js"></script>
+
+    <script src="js/game/GUI.js"></script>
+    <script src="js/tutorial/Tutorial.js"></script>
+
+    <script src="js/game/Timer.js"></script>
+    <script src="js/game/Piece.js"></script>
+    <script src="js/game/Base.js"></script>
+    <script src="js/game/Gameboard.js"></script>
+    <script src="js/game/Quarto.js"></script>
+    <script src="js/game/Player.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700|Roboto:400,100,300,500,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+<div id="loginWrapper">
+    <div id="login">
+        <h1>QUARTO</h1>
+
+        <div id="form">
+            <input id="player1" type="text" placeholder="Player 1 name" />
+            <input id="player2" type="text" placeholder="Player 2 name" />
+            <input type="submit" value="PLAY !" onclick="forward();" />
+        </div>
+    </div>
+
+    <!--Loader animation-->
+    <div id="loader" class="spinner" style="visibility: hidden">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+
+</div>
+
+<div id="game">
+	<canvas id="renderCanvas"></canvas>
+
+    <!--The title-->
+	<div id="title">
+        <div id="titleText">
+            QUARTO<br/>
+            <span class="author">by <a target="_blank" href="http://www.pixelcodr.com">Temechon</a>
+                with <a target="_blank" href="http://www.babylonjs.com">babylon.js</a></span>
+        </div>
+    </div>
+
+    <!--The gui on the left (player 1) -->
+    <div class="gui" id="gui1">
+        <div class="guiName">
+            <span class="playerName" id="p1name">Julian</span>
+        </div>
+        <div class="actions" id="actionLeft">
+            <img id="p1Put" class="action" src="img/put_icon.png" />
+            <img id="p1Pick" class="action" src="img/pick_icon.png" />
+        </div>
+
+    </div>
+
+    <div class="gui" id="gui2">
+        <div class="guiName">
+            <span  class="playerName" id="p2name">Flavie</span>
+        </div>
+        <div class="actions" id="actionRight">
+            <img id="p2Put" class="action" src="img/put_icon.png" />
+            <img id="p2Pick" class="action" src="img/pick_icon.png" />
+        </div>
+    </div>
+
+</div>
+
+<!--Popup displayed at the first game to learn the rules-->
+<div id="startingTutorial">
+    <h1>QUARTO</h1>
+    <p>
+        Do you know how to play ?
+    </p>
+    <table style="width:80%; margin:50px auto;">
+        <tr>
+            <td class="tutoButton" id="startingTutorialYes">YES</td>
+            <td class="tutoButton" id="startingTutorialNo">NO</td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="win">
+    <h1>QUARTO</h1>
+    <span class="winnerName" id="winnerName">
+        Julian
+    </span>
+    <span id="winText">
+        WON !!
+    </span>
+    <span class="winnerName">
+        GG !
+    </span>
+
+    <div id="replayButton" onclick="initGame()">
+        New game ?
+    </div>
+</div>
+
+<!--The tutorial ball-->
+<div id="tutorial">
+    <h3>RULES</h3>
+</div>
+
+<!--The tutorial panel step 1-->
+<div class="tutorial" id="step1">
+    <p>
+        In Quarto, there are 16 unique pieces, each of which is either:
+        <ul>
+            <li>Tall or short</li>
+            <li>Black or white</li>
+            <li>Square or circular</li>
+            <li>Hollow-top or solid-top</li>
+        </ul>
+    </p>
+
+    <table style="width:80%; margin:30px auto;">
+        <tr>
+            <td class="tutoButton deactivate"> < Prev</td>
+            <td class="tutoButton" id="toStep2">Next > </td>
+        </tr>
+    </table>
+</div>
+
+<!--Tutorial step 2-->
+<div class="tutorial tutorialBig" id="step2">
+    <p>
+        A player wins by doing a <span class="quarto">QUARTO</span>. <br/><br/>
+        A <span class="quarto">QUARTO</span> can be done by placing on the board four pieces with a common attribute in a line or in a row.<br/><br/>
+        In this example, these 4 pieces have a hollow-top: it's a <span class="quarto">QUARTO</span>!
+    </p>
+
+    <table style="width:80%; margin:50px auto;">
+        <tr>
+            <td class="tutoButton" id="backStep1"> < Prev</td>
+            <td class="tutoButton" id="toStep3">Next > </td>
+        </tr>
+    </table>
+</div>
+
+<!--Tutorial step 3-->
+<div class="tutorial tutorialBig" id="step3">
+    <p>
+        At the beginning of his turn, a player places on the board the piece selected by his opponent. <br/><br/>
+        If a <span class="quarto">QUARTO</span> is done, the current player won. If not, he selects a piece for his opponent, and his turn is over.<br/><br/>
+        The first player to do a <span class="quarto">QUARTO</span> wins the game!
+    </p>
+
+    <table style="width:80%; margin:40px auto;">
+        <tr>
+            <td class="tutoButton" id="backStep2"> < Prev</td>
+            <td class="tutoButton" id="finish">Finish </td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>

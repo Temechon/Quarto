@@ -1,0 +1,324 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden
+}
+
+body {
+    font-family: "Roboto", "Roboto Slab", serif, "Roboto", sans-serif
+}
+
+#game {
+    width: 100%;
+    height: 100%
+}
+
+#renderCanvas {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0
+}
+
+/* TITLE*/
+/* TITLE CIRCLE */
+#title {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    margin: -220px auto auto auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #3f3b60;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    font-size: 1.2em;
+    -webkit-transition: -webkit-background 0.3s;
+    transition: background 0.3s
+}
+
+#title:hover {
+    background: #7067ab
+}
+
+/* QUARTO */
+#titleText {
+    margin: auto;
+    margin-top: 225px;
+    color: white
+}
+
+/* by Temechon */
+#title .author {
+    font-size: 0.7em
+}
+
+/* website link */
+#title .author a {
+    text-decoration: underline;
+    color: white
+}
+
+/* The GUI */
+.gui {
+    position: absolute;
+    width: 350px;
+    height: 480px;
+    top: 0;
+    margin-top: -360px;
+    background-color: #3f3b60;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform 0.75s ease-in-out;
+    transition: transform 0.75s ease-in-out;
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+    opacity: 0.5
+}
+
+/* The div for the player names */
+.guiName {
+    position: relative;
+    height: 40px;
+    top: 365px;
+    width: 300px;
+    margin: auto;
+    color: white;
+    text-transform: uppercase;
+    text-align: center
+}
+
+/* The player name text */
+.playerName {
+    width: 300px;
+    height: 35px
+}
+
+/* GUI on the left (player 1) */
+#gui1 {
+    left: 0
+}
+
+/* GUI on the right (player 2) */
+#gui2 {
+    right: 0
+}
+
+.currentPlayer {
+    opacity: 1
+}
+
+/* ACTIONS */
+.actions {
+    width: 200px;
+    height: 40px;
+    /*background-color: orange;*/
+    position: relative;
+    top: 350px;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center
+}
+
+.action {
+    width: 40px;
+    margin: 0 20px 0 20px;
+    opacity: 0.5
+}
+
+#actionLeft {
+    left: 0
+}
+
+#actionRight {
+    right: 0
+}
+
+.currentAction {
+    width: 50px;
+    opacity: 1
+}
+
+/* WIN PANEL */
+#win {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 200px);
+    text-align: center;
+    -webkit-transition: -webkit-transform 0.75s ease-in-out;
+    transition: transform 0.75s ease-in-out;
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+    background: #f0f0f0
+}
+
+/* QUARTO */
+#win h1 {
+    background: #7067ab;
+    padding: 10px 0;
+    font-size: 140%;
+    font-weight: 300;
+    color: #fff
+}
+
+.winnerName {
+    margin: 5px auto;
+    /*background-color: green;*/
+    font-size: 1.5em;
+    -webkit-column-rule: #3f3b60;
+    vertical-align: middle;
+}
+
+/* WON !! */
+#winText {
+    font-size: 4em;
+    color: white;
+    vertical-align: middle;
+    /*background-color: orange;*/
+    color: #3f3b60;
+}
+
+#replayButton {
+    background: #7067ab;
+    border: 0;
+    padding: 2.5%;
+    font-size: 100%;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px auto;
+    width: 150px;
+    -webkit-transition: -webkit-background 0.3s;
+    transition: background 0.3s
+}
+
+#replayButton:hover {
+    background: #8b80f6
+}
+
+/* TUTORIAL BUBBLE at the bottom */
+#tutorial {
+    width: 200px;
+    height: 200px;
+    background-color: #3f3b60;
+    opacity: 0.7;
+    color: white;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: fixed;
+    bottom: -150px;
+    right: 0;
+    text-align: center;
+    -webkit-transition: opacity 0.3s;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: opacity 0.3s;
+    transition: -webkit-transform 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    transform:translateY(200%);
+    -webkit-transform: translateY(200%);
+}
+
+#tutorial:hover {
+    opacity: 1
+}
+
+#tutorial h3 {
+    padding-top: 15px;
+    font-weight: 300
+}
+
+/* Tutorial STEPS */
+.tutorial {
+    width:calc(100% / 4);
+    height: 250px;
+    background-color: #3f3b60;
+    position: absolute;
+    -webkit-transition: opacity 0.25s ease-in;
+    transition: opacity 0.25s ease-in;
+    top:calc(100% / 4);
+    right:calc(100% / 15);
+    visibility: hidden;
+    opacity: 0;
+    font-weight: 300
+}
+
+@media screen and (max-width: 1160px) {
+    .tutorial {
+        width:calc(100% / 3);
+        right: 20px;
+    }
+}
+.tutorialBig {
+    height: 350px;
+}
+
+.tutorial p, .tutorial ul {
+    margin: 10px;
+    color: white;
+    font-size: 1em;
+    line-height: 1.5em
+}
+
+.tutoButton {
+    text-align: center;
+    background: #7067ab;
+    border: 0;
+    padding: 4%;
+    font-size: 100%;
+    color: #fff;
+    cursor: pointer;
+    margin: 25px auto;
+    width: 150px;
+    -webkit-transition: -webkit-background 0.3s;
+    transition: background 0.3s
+}
+
+.tutoButton:hover {
+    background: #8b80f6
+}
+
+.deactivate {
+    opacity: 0.2;
+    cursor: auto
+}
+
+/* The quarto text in tutorials */
+.quarto {
+    text-transform: uppercase;
+    font-weight: 300;
+    color: yellow
+}
+
+/* STARTING TUTORIAL */
+#startingTutorial {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 200px);
+    text-align: center;
+    -webkit-transition: -webkit-transform 0.75s ease-in-out;
+    transition: transform 0.75s ease-in-out;
+    -webkit-transform: translateY(-300%);
+    transform: translateY(-300%);
+    background: #f0f0f0;
+}
+/* Quarto */
+#startingTutorial h1 {
+    background: #7067ab;
+    padding: 10px 0;
+    font-size: 140%;
+    font-weight: 300;
+    color: #fff
+}
+/* Do you know how to play ? */
+#startingTutorial p {
+    margin-top:35px;
+    margin-bottom:-15px;
+}
